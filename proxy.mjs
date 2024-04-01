@@ -1,9 +1,11 @@
-import { initializeAuthProxy } from '@propelauth/auth-proxy'
+import { initializeAuthProxy } from '@propelauth/auth-proxy';
+import dotenv from 'dotenv';
 
-// Replace with your configuration
+dotenv.config();
+
 await initializeAuthProxy({
-    authUrl: "PROPEL_TRY_AUTH_URL",
-    integrationApiKey: "PROPEL_TRY_API_KEY",
+    authUrl: process.env.PROPEL_TRY_AUTH_URL,
+    integrationApiKey: process.env.PROPEL_TRY_API_KEY,
     proxyPort: 8000,
     urlWhereYourProxyIsRunning: 'http://localhost:8000',
     target: {
@@ -11,4 +13,4 @@ await initializeAuthProxy({
         port: 8501,
         protocol: 'http:'
     },
-})
+});
