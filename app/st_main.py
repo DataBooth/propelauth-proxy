@@ -1,6 +1,6 @@
-# This code uses the Auth class from the `propelauth` module to authenticate a user 
+# This code uses the Auth class from the `propelauth` module to authenticate a user
 # and display their account information in a Streamlit application.
-# It requires two environment variables, `PROPEL_TRY_AUTH_URL` and `PROPEL_TRY_API_KEY`, 
+# It requires two environment variables, `PROPEL_TRY_AUTH_URL` and `PROPEL_TRY_API_KEY`,
 # which are loaded from a .env file using the load_dotenv() function.
 
 import os
@@ -12,20 +12,38 @@ from try_propelauth.propelauth import Auth
 
 load_dotenv()
 
-auth = Auth(os.environ["PROPEL_TRY_AUTH_URL"], os.environ["PROPEL_TRY_API_KEY"])   # Variables defined in .env
+APP_TITLE = "Try PropelAuth"
+APP_ICON = "🔐"
+APP_LAYOUT = "centered"
+APP_SIDEBAR_INITIAL = "expanded"
 
-logger.info("Starting...")
+st.set_page_config(
+    page_title=APP_TITLE,
+    page_icon=APP_ICON,
+    layout=APP_LAYOUT,
+    initial_sidebar_state=APP_SIDEBAR_INITIAL,
+)
+
+# Authentication (variables defined in .env and loaded by dotenv)
+
+logger.info("Authenticating...")
+auth = Auth(os.environ["PROPEL_TRY_AUTH_URL"], os.environ["PROPEL_TRY_API_KEY"])
+
 user = auth.get_user()
-
 if user is None:
     error_msg = "Unauthorized (auth by https://www.PropelAuth.com)"
     logger.error(error_msg)
     st.error(error_msg)
     st.stop()
 
-login_msg = f"Logged in as {user.email} with user ID {user.user_id}"
-logger.info(login_msg)
-st.text(login_msg)
+# Main app (once authenticated)
+
+st.title("Try PropelAuth")
+st.subheader("Demo app")
+
+login_msg = f"Logged in as **{user.email}** with user ID: `{user.user_id}`"
+logger.info(login_msg.replace("*", "").replace("`", ""))
+st.markdown(login_msg)
 
 with st.sidebar:
-    st.link_button("Account", auth.get_account_url(), use_container_width=True)
+    st.link_button("My account settings", auth.get_account_url(), use_container_width=True)
