@@ -11,6 +11,12 @@ ps_proxy:
     ps aux | grep 'proxy.mjs'
 
 
+# App
+
+app app_name="app/st_main.py":
+    streamlit run {{app_name}}
+
+
 # Docker
 
 # Start Docker (if it is not running)
