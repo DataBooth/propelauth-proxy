@@ -7,10 +7,10 @@ await initializeAuthProxy({
     authUrl: process.env.PROPEL_TRY_AUTH_URL,
     integrationApiKey: process.env.PROPEL_TRY_API_KEY,
     proxyPort: 8000,
-    urlWhereYourProxyIsRunning: 'http://localhost:8000',
+    urlWhereYourProxyIsRunning: process.env.RENDER_PROXY_URL,
     target: {
-        host: 'localhost',
-        port: 8501,
-        protocol: 'http:'
+        host: process.env.TARGET_HOST,
+        port: process.env.TARGET_PORT,
+        protocol: process.env.TARGET_PROTOCOL
     },
 });
