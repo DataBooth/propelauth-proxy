@@ -1,5 +1,7 @@
 # Extras
 
+.env
+.env-deploy
 .vscode/
 
 # Byte-compiled / optimized / DLL files
