@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@propelauth/auth-proxy": "^0.0.8",
-    "dotenv": "^16.4.5"
-  }
-}

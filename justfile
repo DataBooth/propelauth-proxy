@@ -1,7 +1,7 @@
 default:
     @just --list
 
-propelauth:
+install-deps:
     npm i @propelauth/auth-proxy && npm install dotenv
 
 proxy:
@@ -10,11 +10,6 @@ proxy:
 ps_proxy:
     ps aux | grep 'proxy.mjs'
 
-
-# App
-
-app app_name="app/st_main.py":
-    streamlit run {{app_name}}
 
 
 # Docker
