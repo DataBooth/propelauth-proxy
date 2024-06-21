@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 await initializeAuthProxy({
-    authUrl: process.env.PROPEL_TRY_AUTH_URL,
-    integrationApiKey: process.env.PROPEL_TRY_API_KEY,
+    authUrl: process.env.PROPEL_AUTH_URL,
+    integrationApiKey: process.env.PROPEL_API_KEY,
     proxyPort: 8000,
     urlWhereYourProxyIsRunning: process.env.PROXY_SERVER_URL,
     target: {
